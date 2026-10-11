@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramo Romántico Azul Neón & Hot Wheels</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@500;800;900&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    :root {
+      --cyan-glow: #00f3ff;
+      --blue-electric: #0066ff;
+      --pink-neon: #ff007f;
+      --gold-neon: #ffd700;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 30%, #061129 0%, #020612 70%, #000005 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Fondo de destellos y nebulosa */
+    .nebula-bg {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 243, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 127, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.2) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Texto con efecto Neón */
+    .text-glow-cyan {
+      text-shadow: 0 0 8px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #0066ff;
+    }
+
+    .text-glow-pink {
+      text-shadow: 0 0 8px #ff007f, 0 0 20px #ff007f, 0 0 35px #ff007f;
+    }
+
+    .text-glow-gold {
+      text-shadow: 0 0 8px #ffd700, 0 0 20px #ffa500;
+    }
+
+    .box-glow-blue {
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.4), inset 0 0 15px rgba(0, 243, 255, 0.2);
+    }
+
+    .particle {
+      position: fixed;
+      top: -10%;
+      pointer-events: none;
+      z-index: 15;
+      animation: fallParticle linear infinite;
+    }
+
+    @keyframes fallParticle {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 0.9; }
+      100% {
+        transform: translateY(115vh) rotate(360deg) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .flower-group {
+      filter: drop-shadow(0 0 15px #00f3ff);
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 12px #00f3ff) drop-shadow(0 0 25px #0066ff); }
+      100% { filter: drop-shadow(0 0 22px #00f3ff) drop-shadow(0 0 45px #ff007f); }
+    }
+
+    .petal {
+      background: linear-gradient(135deg, #00f3ff 0%, #0052d4 70%, #ff007f 100%);
+      box-shadow: inset 0 0 8px #fff;
+    }
+
+    .hw-body-red {
+      background: linear-gradient(90deg, #ff0033, #ff5500);
+      box-shadow: 0 0 10px #ff0033;
+    }
+    .hw-body-blue {
+      background: linear-gradient(90deg, #00f3ff, #0044ff);
+      box-shadow: 0 0 10px #00f3ff;
+    }
+    .hw-body-gold {
+      background: linear-gradient(90deg, #ffe600, #ff7700);
+      box-shadow: 0 0 10px #ffe600;
+    }
+
+    .nitro-flame {
+      position: absolute;
+      left: -22px;
+      top: 25%;
+      width: 25px;
+      height: 50%;
+      background: radial-gradient(circle, #fff 0%, #00f3ff 40%, #ff007f 100%);
+      clip-path: polygon(100% 20%, 0 50%, 100% 80%);
+      animation: flameFlicker 0.08s infinite alternate;
+    }
+
+    @keyframes flameFlicker {
+      0% { transform: scaleX(0.8) scaleY(0.9); opacity: 0.8; }
+      100% { transform: scaleX(1.3) scaleY(1.1); opacity: 1; }
+    }
+
+    .wheel-spin {
+      animation: spin 0.3s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .track-bg {
+      background: linear-gradient(180deg, #0a0f24 0%, #02040a 100%);
+      border-top: 3px solid #00f3ff;
+      box-shadow: 0 -10px 25px rgba(0, 243, 255, 0.3);
+    }
+
+    .track-dash {
+      background: repeating-linear-gradient(90deg, #00f3ff 0px, #00f3ff 30px, transparent 30px, transparent 60px);
+      animation: moveTrack 0.4s linear infinite;
+    }
+
+    @keyframes moveTrack {
+      0% { background-position: 0 0; }
+      100% { background-position: -60px 0; }
+    }
+
+    .car-fast-1 {
+      animation: driveCar1 3.2s linear infinite;
+    }
+
+    .car-fast-2 {
+      animation: driveCar2 4.8s linear infinite;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes driveCar1 {
+      0% { left: -120px; }
+      100% { left: 110%; }
+    }
+
+    @keyframes driveCar2 {
+      0% { left: -120px; }
+      100% { left: 110%; }
+    }
+
+    /* Botones Neón */
+    .btn-neon {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-neon:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .btn-neon:active {
+      transform: translateY(1px) scale(0.98);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen text-white pb-32">
+
+  <div class="nebula-bg"></div>
+
+  <!-- Contenedor para lluvia de corazones/pétalos -->
+  <div id="particleContainer"></div>
+
+  <div class="fixed top-4 right-4 z-50">
+    <button id="musicToggleBtn" class="btn-neon bg-black/70 backdrop-blur-md border-2 border-cyan-400 text-cyan-300 font-bold px-4 py-2.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(0,243,255,0.5)] hover:border-pink-500 hover:text-pink-400">
+      <span id="musicIcon" class="text-xl animate-bounce">🎵</span>
+      <span id="musicText" class="text-sm font-semibold tracking-wide">Reproducir "Déjate Querer"</span>
+    </button>
+  </div>
+
+  <!-- YouTube Audio Iframe -->
+  <iframe 
+    id="youtubePlayer" 
+    src="https://www.youtube.com/embed/5l2EyZcDGpc?enablejsapi=1&autoplay=1&loop=1&playlist=5l2EyZcDGpc" 
+    allow="autoplay" 
+    class="hidden">
+  </iframe>
+
+  <main class="relative z-10 w-full max-w-2xl mt-6 px-4">
+    <div class="bg-slate-950/80 backdrop-blur-xl border-2 border-cyan-400/80 rounded-3xl p-6 md:p-8 box-glow-blue relative overflow-hidden">
+      
+      <!-- Borde Neón Parpadeante -->
+      <div class="absolute inset-0 border border-pink-500/30 rounded-3xl pointer-events-none"></div>
+
+      <header class="text-center mb-6">
+        <h1 class="font-['Great_Vibes'] text-5xl md:text-6xl text-cyan-300 text-glow-cyan mb-2">
+          Para Mi Persona Favorita 💙
+        </h1>
+        <p class="font-['Orbitron'] text-xs md:text-sm tracking-widest text-pink-400 text-glow-pink font-bold uppercase">
+          ✨ Velocidad, Amor & Flores de Neón ✨
+        </p>
+      </header>
+
+      <section class="relative w-full h-72 my-4 flex items-center justify-center">
+        <div class="relative w-72 h-72">
+          
+          <!-- Tallos Azules Neón -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-24 h-36">
+            <div class="absolute w-2 h-32 bg-cyan-400 rounded-full left-4 rotate-[-20deg] shadow-[0_0_10px_#00f3ff]"></div>
+            <div class="absolute w-2 h-32 bg-cyan-400 rounded-full left-9 rotate-[-8deg] shadow-[0_0_10px_#00f3ff]"></div>
+            <div class="absolute w-2 h-32 bg-cyan-400 rounded-full left-12 rotate-[0deg] shadow-[0_0_10px_#00f3ff]"></div>
+            <div class="absolute w-2 h-32 bg-cyan-400 rounded-full left-15 rotate-[8deg] shadow-[0_0_10px_#00f3ff]"></div>
+            <div class="absolute w-2 h-32 bg-cyan-400 rounded-full left-20 rotate-[20deg] shadow-[0_0_10px_#00f3ff]"></div>
+          </div>
+
+          <!-- Moño Dorado Resplandeciente -->
+          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+            <div class="w-10 h-6 bg-gradient-to-r from-amber-300 to-yellow-500 rounded-lg border border-white shadow-[0_0_15px_#ffd700] z-10"></div>
+            <div class="flex -mt-4 gap-4">
+              <div class="w-8 h-8 bg-amber-400 rounded-full rotate-45 border border-white shadow-[0_0_10px_#ffd700]"></div>
+              <div class="w-8 h-8 bg-amber-400 rounded-full -rotate-45 border border-white shadow-[0_0_10px_#ffd700]"></div>
+            </div>
+          </div>
+
+          <!-- Flores Azul Neón Animadas -->
+          <div class="flower-group absolute top-2 left-24 w-20 h-20">
+            <div class="petal absolute w-8 h-8 rounded-full top-0 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-12"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-12 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-0"></div>
+            <div class="absolute w-6 h-6 bg-yellow-300 rounded-full top-7 left-7 shadow-[0_0_12px_#fff]"></div>
+          </div>
+
+          <div class="flower-group absolute top-14 left-6 w-20 h-20">
+            <div class="petal absolute w-8 h-8 rounded-full top-0 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-12"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-12 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-0"></div>
+            <div class="absolute w-6 h-6 bg-pink-400 rounded-full top-7 left-7 shadow-[0_0_12px_#fff]"></div>
+          </div>
+
+          <div class="flower-group absolute top-14 right-6 w-20 h-20">
+            <div class="petal absolute w-8 h-8 rounded-full top-0 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-12"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-12 left-6"></div>
+            <div class="petal absolute w-8 h-8 rounded-full top-6 left-0"></div>
+            <div class="absolute w-6 h-6 bg-cyan-200 rounded-full top-7 left-7 shadow-[0_0_12px_#fff]"></div>
+          </div>
+
+          <div class="bouquet-hw absolute top-12 left-24 z-30 transform -rotate-12 hover:scale-125 transition-transform cursor-pointer" title="¡Haz clic en el carrito!">
+            <div class="w-16 h-7 hw-body-red rounded-lg relative border border-yellow-300">
+              <div class="nitro-flame"></div>
+              <div class="w-7 h-3 bg-black/90 rounded-t-md absolute -top-2 left-4 border border-cyan-400"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 left-2 wheel-spin"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 right-2 wheel-spin"></div>
+            </div>
+          </div>
+
+          <div class="bouquet-hw absolute top-28 left-10 z-30 transform rotate-25 hover:scale-125 transition-transform cursor-pointer" title="¡Haz clic en el carrito!">
+            <div class="w-16 h-7 hw-body-blue rounded-lg relative border border-white">
+              <div class="nitro-flame"></div>
+              <div class="w-7 h-3 bg-black/90 rounded-t-md absolute -top-2 left-4 border border-pink-500"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 left-2 wheel-spin"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 right-2 wheel-spin"></div>
+            </div>
+          </div>
+
+          <div class="bouquet-hw absolute top-28 right-10 z-30 transform -rotate-25 hover:scale-125 transition-transform cursor-pointer" title="¡Haz clic en el carrito!">
+            <div class="w-16 h-7 hw-body-gold rounded-lg relative border border-white">
+              <div class="nitro-flame"></div>
+              <div class="w-7 h-3 bg-black/90 rounded-t-md absolute -top-2 left-4 border border-yellow-300"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 left-2 wheel-spin"></div>
+              <div class="w-3.5 h-3.5 bg-gray-800 border-2 border-white rounded-full absolute -bottom-1.5 right-2 wheel-spin"></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="flex flex-wrap justify-center gap-3 my-6">
+        <button id="btnHearts" class="btn-neon bg-gradient-to-r from-pink-600 to-rose-500 text-white font-bold text-xs md:text-sm px-4 py-2.5 rounded-2xl shadow-[0_0_15px_rgba(255,0,127,0.5)] border border-pink-300">
+          💖 ¡Lluvia Neón!
+        </button>
+
+        <button id="btnNitro" class="btn-neon bg-gradient-to-r from-amber-500 to-orange-500 text-black font-extrabold text-xs md:text-sm px-4 py-2.5 rounded-2xl shadow-[0_0_15px_rgba(255,215,0,0.6)] border border-yellow-200">
+          🚀 ¡Nitro / Acelerar!
+        </button>
+
+        <button id="btnMessage" class="btn-neon bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs md:text-sm px-4 py-2.5 rounded-2xl shadow-[0_0_15px_rgba(0,243,255,0.5)] border border-cyan-200">
+          💌 Cambiar Mensaje
+        </button>
+      </div>
+
+      <article id="messageCard" class="bg-black/60 border border-cyan-500/40 rounded-2xl p-5 text-gray-200 text-sm md:text-base leading-relaxed text-justify shadow-inner">
+        <p class="mb-3">
+          Dicen que las <span class="text-cyan-300 font-semibold text-glow-cyan">flores azul neón</span> representan lo extraordinario, aquello que parece sacado de un sueño brillante. Por eso este ramo es para ti, porque no existe nadie en el universo que se compare a lo especial que eres en mi vida.
+        </p>
+        <p class="mb-3">
+          Aceleras mi corazón a toda velocidad, ¡mucho más rápido que cualquier <span class="text-pink-400 font-semibold text-glow-pink">Hot Wheels con Nitro</span> en la pista! 🏎️💨
+        </p>
+        <p class="font-semibold text-cyan-200 text-center mt-2">
+          ¡Gracias por llenar cada uno de mis días de luz, alegría y magia sin fin!
+        </p>
+      </article>
+
+      <footer class="text-right mt-4">
+        <p class="font-['Great_Vibes'] text-3xl text-pink-400 text-glow-pink">
+          Con todo mi amor eterno, ♥
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <div class="fixed bottom-0 left-0 w-full h-20 track-bg z-20 flex items-center overflow-hidden">
+    <!-- Línea punteada de pista -->
+    <div class="w-full h-1 track-dash absolute top-1/2 -translate-y-1/2"></div>
+
+    <!-- Carrito Pista 1 -->
+    <div id="trackCar1" class="absolute bottom-4 car-fast-1">
+      <div class="w-20 h-8 hw-body-red rounded-xl relative border-2 border-yellow-300">
+        <div class="nitro-flame"></div>
+        <div class="w-9 h-4 bg-black/90 rounded-t-lg absolute -top-3 left-5 border border-cyan-300"></div>
+        <div class="w-4 h-4 bg-gray-900 border-2 border-white rounded-full absolute -bottom-2 left-2 wheel-spin"></div>
+        <div class="w-4 h-4 bg-gray-900 border-2 border-white rounded-full absolute -bottom-2 right-2 wheel-spin"></div>
+      </div>
+    </div>
+
+    <!-- Carrito Pista 2 -->
+    <div id="trackCar2" class="absolute bottom-4 car-fast-2">
+      <div class="w-20 h-8 hw-body-blue rounded-xl relative border-2 border-cyan-300">
+        <div class="nitro-flame"></div>
+        <div class="w-9 h-4 bg-black/90 rounded-t-lg absolute -top-3 left-5 border border-pink-400"></div>
+        <div class="w-4 h-4 bg-gray-900 border-2 border-white rounded-full absolute -bottom-2 left-2 wheel-spin"></div>
+        <div class="w-4 h-4 bg-gray-900 border-2 border-white rounded-full absolute -bottom-2 right-2 wheel-spin"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    /* Reproductor de YouTube */
+    let player;
+    let isPlaying = false;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtubePlayer', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      event.target.setVolume(90);
+      event.target.playVideo();
+
+      const btn = document.getElementById('musicToggleBtn');
+      const icon = document.getElementById('musicIcon');
+      const text = document.getElementById('musicText');
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!isPlaying) {
+          player.playVideo();
+          icon.textContent = '🎶';
+          text.textContent = 'Pausar Música';
+          btn.classList.add('border-pink-500');
+          isPlaying = true;
+        } else {
+          player.pauseVideo();
+          icon.textContent = '🎵';
+          text.textContent = 'Reproducir "Déjate Querer"';
+          btn.classList.remove('border-pink-500');
+          isPlaying = false;
+        }
+      });
+
+      // Primer clic en la página activa la música automáticamente
+      document.body.addEventListener('click', () => {
+        if (!isPlaying && player) {
+          player.playVideo();
+          icon.textContent = '🎶';
+          text.textContent = 'Pausar Música';
+          isPlaying = true;
+        }
+      }, { once: true });
+    }
+
+    /* Generador de Lluvia de Corazones y Pétalos Neón */
+    const container = document.getElementById('particleContainer');
+
+    function createNeonParticle(burst = 1) {
+      for (let i = 0; i < burst; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        const isHeart = Math.random() > 0.4;
+        if (isHeart) {
+          particle.innerHTML = '💙';
+          if (Math.random() > 0.5) particle.innerHTML = '💖';
+          particle.style.fontSize = (Math.random() * 16 + 16) + 'px';
+          particle.style.filter = 'drop-shadow(0 0 8px #00f3ff)';
+        } else {
+          particle.innerHTML = '🌸';
+          particle.style.fontSize = (Math.random() * 14 + 14) + 'px';
+          particle.style.filter = 'drop-shadow(0 0 8px #ff007f)';
+        }
+
+        particle.style.left = (Math.random() * 100) + 'vw';
+        particle.style.animationDuration = (Math.random() * 2.5 + 2.5) + 's';
+
+        container.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 5000);
+      }
+    }
+
+    // Lluvia constante
+    setInterval(() => createNeonParticle(1), 200);
+
+    /* Botón 1: ¡Lluvia Neón! */
+    document.getElementById('btnHearts').addEventListener('click', (e) => {
+      e.stopPropagation();
+      createNeonParticle(30);
+    });
+
+    /* Botón 2: Nitro Acelerar Hot Wheels */
+    let isNitroActive = false;
+    document.getElementById('btnNitro').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const car1 = document.getElementById('trackCar1');
+      const car2 = document.getElementById('trackCar2');
+
+      if (!isNitroActive) {
+        car1.style.animationDuration = '1.2s';
+        car2.style.animationDuration = '1.6s';
+        isNitroActive = true;
+        createNeonParticle(15);
+      } else {
+        car1.style.animationDuration = '3.2s';
+        car2.style.animationDuration = '4.8s';
+        isNitroActive = false;
+      }
+    });
+
+    /* Botón 3: Cambiar Mensaje Romántico */
+    const romanticMessages = [
+      `
+      <p class="mb-3">
+        Dicen que las <span class="text-cyan-300 font-semibold text-glow-cyan">flores azul neón</span> representan lo extraordinario, aquello que parece sacado de un sueño brillante. Por eso este ramo es para ti, porque no existe nadie en el universo que se compare a lo especial que eres en mi vida.
+      </p>
+      <p class="mb-3">
+        Aceleras mi corazón a toda velocidad, ¡mucho más rápido que cualquier <span class="text-pink-400 font-semibold text-glow-pink">Hot Wheels con Nitro</span> en la pista! 🏎️💨
+      </p>
+      <p class="font-semibold text-cyan-200 text-center mt-2">
+        ¡Gracias por llenar cada uno de mis días de luz, alegría y magia sin fin!
+      </p>
+      `,
+      `
+      <p class="mb-3">
+        Eres mi motor principal y la luz más brillante de todas. Cada <span class="text-cyan-300 font-semibold text-glow-cyan">pétalo azul Neón</span> de este ramo representa un momento inolvidable que hemos compartido y mil razones más para amarte.
+      </p>
+      <p class="mb-3">
+        Si tuviera una pista de carreras infinita, la recorrería a máxima velocidad una y otra vez con tal de verte sonreír. 💙✨
+      </p>
+      <p class="font-semibold text-pink-300 text-center mt-2">
+        ¡Eres única, hermosa e inigualable!
+      </p>
+      `,
+      `
+      <p class="mb-3">
+        El amor verdadero no se apaga, <span class="text-pink-400 font-semibold text-glow-pink">¡brilla con fuerza neón!</span> Gracias por ser mi lugar seguro, mi mejor aventura y la persona que hace latir mi corazón sin frenos.
+      </p>
+      <p class="mb-3">
+        Te entrego este ramo digital lleno de luces, música y carritos deportivos para sacarte la sonrisa más linda del día. 🏎️🌸
+      </p>
+      <p class="font-semibold text-cyan-200 text-center mt-2">
+        ¡Te amo con todo mi corazón!
+      </p>
+      `
+    ];
+
+    let currentMsgIndex = 0;
+    document.getElementById('btnMessage').addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentMsgIndex = (currentMsgIndex + 1) % romanticMessages.length;
+      document.getElementById('messageCard').innerHTML = romanticMessages[currentMsgIndex];
+    });
+
+    /* Clic interactivo en carritos del ramo */
+    document.querySelectorAll('.bouquet-hw').forEach(car => {
+      car.addEventListener('click', (e) => {
+        e.stopPropagation();
+        createNeonParticle(20);
+      });
+    });
+  </script>
+</body>
+</html>
